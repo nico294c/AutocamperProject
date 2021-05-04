@@ -1,21 +1,27 @@
 package sample;
 
 public class Autocamper {
-    private enum condition{
+    public enum condition{
         Perfect, Good, SlightlyUsed, VeryUsed
     }
-    private enum availability{
+    public enum availability{
         Rented, Available, Unavailable
     }
-    private enum kitchenType{
+    public enum kitchenType{
     BigKitchen, SmallKitchen, NoKitchen
     }
+    public enum autocamperType{
+        Basic, Standard, Luxury
+    }
+
+    private autocamperType autocamperType;
     private kitchenType kitchenType;
     private availability availability;
     private condition condition;
     private double mileage;
     private double size;
     private int capacity;
+    private int autocamperId;
 
     public Autocamper.kitchenType getKitchenType() {
         return kitchenType;
@@ -59,12 +65,28 @@ public class Autocamper {
         this.capacity = capacity;
     }
 
-    public Autocamper(double mileage, double size, int capacity, availability availability, condition condition, kitchenType kitchenType){
+    public Autocamper.autocamperType getAutocamperType() {
+        return autocamperType;
+    }
+    public void setAutocamperType(Autocamper.autocamperType autocamperType) {
+        this.autocamperType = autocamperType;
+    }
+
+    public int getAutocamperId() {
+        return autocamperId;
+    }
+    public void setAutocamperId(int autocamperId) {
+        this.autocamperId = autocamperId;
+    }
+
+    public Autocamper(int autocamperId, double mileage, double size, int capacity, availability availability, condition condition, kitchenType kitchenType, autocamperType autocamperType){
         setAvailability(availability);
         setCondition(condition);
         setKitchenType(kitchenType);
         setMileage(mileage);
         setCapacity(capacity);
         setSize(size);
+        setAutocamperId(autocamperId);
+        setAutocamperType(autocamperType);
     }
 }

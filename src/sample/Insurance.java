@@ -1,7 +1,7 @@
 package sample;
 
 public class Insurance {
-    private enum insuranceType{
+    public enum insuranceType{
         Basic, SuperCoverPlus
     }
     private double insurancePrice;
