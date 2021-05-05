@@ -110,8 +110,8 @@ public class Autocamper {
         autocamperID = autocamperID;
     }
 
-    public Autocamper(double mileage, int size, int capacity, availability availability, condition condition,
-                      kitchenType kitchenType, autocamperType autocamperType)throws SQLException{
+    public Autocamper(int size, double mileage, condition condition, availability availability, int capacity,
+                        kitchenType kitchenType, autocamperType autocamperType)throws SQLException{
 
         setAvailability(availability);
         setCondition(condition);
