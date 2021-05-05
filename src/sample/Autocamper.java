@@ -23,7 +23,6 @@ public class Autocamper {
     private kitchenType kitchenType;
     private availability availability;
     private condition condition;
-    private autocamperType autocamperType;
     private double mileage;
     private int size;
     private int capacity;
@@ -108,17 +107,10 @@ public class Autocamper {
             throwables.printStackTrace();
         }
         MyDatabase.closeConnection(connection);
-        this.autocamperID = autocamperID;
+        autocamperID = autocamperID;
     }
 
-    public Autocamper.autocamperType getAutocamperType() {
-        return autocamperType;
-    }
-    public void setAutocamperType(Autocamper.autocamperType autocamperType) {
-        this.autocamperType = autocamperType;
-    }
-
-    public Autocamper(double mileage, double size, int capacity, availability availability, condition condition, 
+    public Autocamper(double mileage, int size, int capacity, availability availability, condition condition,
                       kitchenType kitchenType, autocamperType autocamperType){
 
         setAvailability(availability);

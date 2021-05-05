@@ -27,7 +27,7 @@ public class AutocamperDaoImpl implements AutocamperDao{
     static void insertAutocamper(Autocamper autocamper, Connection connection) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("INSERT into tbl_Autocamper VALUES (?,?,?,?,?,?,?,?)");
 
-        preparedStatement.setInt(1, autocamper.getID());
+        preparedStatement.setInt(1, autocamper.getAutocamperID());
         preparedStatement.setInt(2, autocamper.getSize());
         preparedStatement.setFloat(3, (float) autocamper.getMileage());
         preparedStatement.setString(4, autocamper.getCondition().toString());
