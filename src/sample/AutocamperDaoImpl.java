@@ -23,15 +23,15 @@ public class AutocamperDaoImpl implements AutocamperDao {
 
     static void insertAutocamper(Autocamper autocamper, Connection connection) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("INSERT into tbl_Autocamper VALUES (?,?,?,?,?,?,?,?)");
-
+        autocamper.setAutocamperID();
         preparedStatement.setInt(1, autocamper.getAutocamperID());
         preparedStatement.setInt(2, autocamper.getSize());
         preparedStatement.setFloat(3, (float) autocamper.getMileage());
-        preparedStatement.setString(4, autocamper.getCondition().toString());
-        preparedStatement.setString(5, autocamper.getAvailability().toString());
+        preparedStatement.setInt(4, autocamper.getCondition().getValue());
+        preparedStatement.setInt(5, autocamper.getAvailability().getValue());
         preparedStatement.setInt(6, autocamper.getCapacity());
-        preparedStatement.setString(7, autocamper.getKitchenType().toString());
-        preparedStatement.setString(8, autocamper.getAutocamperType().toString());
+        preparedStatement.setInt(7, autocamper.getKitchenType().getValue());
+        preparedStatement.setInt(8, autocamper.getAutocamperType().getValue());
 
         preparedStatement.execute();
     }
@@ -48,12 +48,30 @@ public class AutocamperDaoImpl implements AutocamperDao {
 
     @Override
     public List<Autocamper> getAllAutocamper() throws SQLException {
+
+
         connection = MyDatabase.openConnection();
         PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM tbl_Autocamper");
 
         ResultSet resultSet = preparedStatement.executeQuery();
 
 
+        while (resultSet.next()){
+            autocamperArrayList.add(new Autocamper(
+                    resultSet.getInt(1),
+                    resultSet.getInt(2),
+                    resultSet.getInt(3),
+                    Autocamper.condition.getEnum(resultSet.getInt(4)),
+                    Autocamper.availability.getEnum(resultSet.getInt(5)),
+                    resultSet.getInt(6),
+                    Autocamper.kitchenType.getEnum(resultSet.getInt(7)),
+                    Autocamper.autocamperType.getEnum(resultSet.getInt(8))));
+
+
+        }
+        for (Autocamper a: autocamperArrayList) {
+            System.out.println(a.getAutocamperID());
+        }
 
         return null;
     }

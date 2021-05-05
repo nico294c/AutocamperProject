@@ -14,6 +14,19 @@ public class Main extends Application {
         primaryStage.setTitle("Autocamper");
         primaryStage.setScene(new Scene(root, 600, 800));
         primaryStage.show();
+
+        AutocamperDao hej = new AutocamperDaoImpl();
+
+//
+//        hej.addAutocamper(new Autocamper(1,2,
+//                Autocamper.condition.Perfect, Autocamper.availability.Available,
+//                3, Autocamper.kitchenType.BigKitchen, Autocamper.autocamperType.Luxury ));
+
+        hej.getAllAutocamper();
+
+        primaryStage.close();
+
+
     }
 
 
