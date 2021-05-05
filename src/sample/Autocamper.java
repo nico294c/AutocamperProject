@@ -194,7 +194,9 @@ public class Autocamper {
             throwables.printStackTrace();
         }
         MyDatabase.closeConnection(connection);
+
         autocamperID = id;
+
     }
 
     public Autocamper(int autocamperID, int size, int mileage, condition condition, availability availability, int capacity,
