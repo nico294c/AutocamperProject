@@ -1,13 +1,10 @@
 package sample;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AutocamperDaoImpl implements AutocamperDao{
+public class AutocamperDaoImpl implements AutocamperDao {
 
     ArrayList<Autocamper> autocamperArrayList = new ArrayList<>();
     Connection connection;
@@ -50,7 +47,14 @@ public class AutocamperDaoImpl implements AutocamperDao{
     }
 
     @Override
-    public List<Autocamper> getAllAutocamper(Autocamper autocamper) {
+    public List<Autocamper> getAllAutocamper(Autocamper autocamper) throws SQLException {
+        connection = MyDatabase.openConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM tbl_Autocamper");
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+
+
         return null;
     }
 
