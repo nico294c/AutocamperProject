@@ -7,23 +7,109 @@ import java.sql.SQLException;
 
 public class Autocamper {
     public enum condition{
-        Perfect, Good, SlightlyUsed, VeryUsed
+        Perfect(0), Good(1), SlightlyUsed(2), VeryUsed(3);
+
+        private final int value;
+        private condition(int value){
+            this.value = value;
+        }
+        public int getValue(){
+            return value;
+        }
+
+        public static condition getEnum(int i){
+            switch (i){
+                case 0:
+                    return Perfect;
+                case 1:
+                    return Good;
+                case 2:
+                    return  SlightlyUsed;
+                case 3:
+                    return VeryUsed;
+                default:
+                    return null;
+            }
+        }
+
     }
     public enum availability{
-        Rented, Available, Unavailable
+        Rented(0), Available(1), Unavailable(2);
+
+        private final int value;
+        private availability(int value){
+            this.value = value;
+        }
+        public int getValue(){
+            return value;
+        }
+        public static availability getEnum(int i){
+            switch (i){
+                case 0:
+                    return Rented;
+                case 1:
+                    return Available;
+                case 2:
+                    return  Unavailable;
+                default:
+                    return null;
+            }
+        }
     }
     public enum kitchenType{
-        BigKitchen, SmallKitchen, NoKitchen
+        BigKitchen(0), SmallKitchen(1), NoKitchen(2);
+
+        private final int value;
+        private kitchenType(int value){
+            this.value = value;
+        }
+        public int getValue(){
+            return value;
+        }
+
+        public static kitchenType getEnum(int i){
+            switch (i){
+                case 0:
+                    return BigKitchen;
+                case 1:
+                    return SmallKitchen;
+                case 2:
+                    return  NoKitchen;
+                default:
+                    return null;
+            }
+        }
     }
     public enum autocamperType{
-        Basic, Standard, Luxury
+        Basic(0), Standard(1), Luxury(2);
+
+        private final int value;
+        private autocamperType(int value){
+            this.value = value;
+        }
+        public int getValue(){
+            return value;
+        }
+
+        public static autocamperType getEnum(int i){
+            switch (i){
+                case 0:
+                    return Basic;
+                case 1:
+                    return Standard;
+                case 2:
+                    return  Luxury;
+                default:
+                    return null;
+            }
+        }
     }
 
     private autocamperType autocamperType;
     private kitchenType kitchenType;
     private availability availability;
     private condition condition;
-    private double mileage;
+    private int mileage;
     private int size;
     private int capacity;
     private int autocamperID;
@@ -58,11 +144,11 @@ public class Autocamper {
         this.autocamperType = autocamperType;
     }
 
-    public double getMileage() {
+    public int getMileage() {
         return mileage;
     }
 
-    public void setMileage(double mileage) {
+    public void setMileage(int mileage) {
         this.mileage = mileage;
     }
 
@@ -83,7 +169,7 @@ public class Autocamper {
     }
 
     public int getAutocamperID() {
-        return autocamperID;
+        return this.autocamperID;
     }
 
     public void setAutocamperID() throws SQLException {
@@ -108,19 +194,20 @@ public class Autocamper {
             throwables.printStackTrace();
         }
         MyDatabase.closeConnection(connection);
-        this.autocamperID = id;
+
+        autocamperID = id;
+
     }
 
-    public Autocamper(int size, double mileage, condition condition, availability availability, int capacity,
+    public Autocamper(int autocamperID, int size, int mileage, condition condition, availability availability, int capacity,
                         kitchenType kitchenType, autocamperType autocamperType)throws SQLException{
-
+        this.autocamperID = autocamperID;
         setAvailability(availability);
         setCondition(condition);
         setKitchenType(kitchenType);
         setMileage(mileage);
         setCapacity(capacity);
         setSize(size);
-        setAutocamperID();
         setAutocamperType(autocamperType);
     }
 
