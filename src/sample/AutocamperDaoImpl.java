@@ -50,7 +50,7 @@ public class AutocamperDaoImpl implements AutocamperDao{
     }
 
     @Override
-    public List<Autocamper> getAllAutocamper(Autocamper autocamper) {
+    public List<Autocamper> getAllAutocamper() {
         return null;
     }
 

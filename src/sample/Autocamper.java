@@ -6,29 +6,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Autocamper {
-    public enum condition {
+    public enum condition{
         Perfect, Good, SlightlyUsed, VeryUsed
     }
-
-    public enum availability {
+    public enum availability{
         Rented, Available, Unavailable
     }
-
-    public enum kitchenType {
+    public enum kitchenType{
         BigKitchen, SmallKitchen, NoKitchen
-
-
-
     }
-
-    public static void test(){
-    }
-
     public enum autocamperType{
         Basic, Standard, Luxury
-
     }
 
+    private autocamperType autocamperType;
     private kitchenType kitchenType;
     private availability availability;
     private condition condition;
@@ -36,7 +27,7 @@ public class Autocamper {
     private double mileage;
     private int size;
     private int capacity;
-    private int id;
+    private int autocamperID;
 
     public Autocamper.kitchenType getKitchenType() {
         return kitchenType;
@@ -92,11 +83,11 @@ public class Autocamper {
         this.capacity = capacity;
     }
 
-    public int getID() {
-        return id;
+    public int getAutocamperID() {
+        return autocamperID;
     }
 
-    public int setID() throws SQLException {
+    public void setAutocamperID() throws SQLException {
         Connection connection = MyDatabase.openConnection();
         PreparedStatement preparedStatement = null;
         try {
@@ -106,29 +97,37 @@ public class Autocamper {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if(resultSet==null){
-                id = 1;
+                autocamperID = 1;
             }
 
             if (resultSet.next()) {
                 //id is set equal to the current max id plus one.
-                id = resultSet.getInt(1)+1;
+                autocamperID = resultSet.getInt(1)+1;
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
         MyDatabase.closeConnection(connection);
-        return id;
+        this.autocamperID = autocamperID;
     }
 
-    public Autocamper(double mileage, int size, int capacity, availability availability, condition
-            condition, kitchenType kitchenType, autocamperType autocamperType) throws SQLException {
+    public Autocamper.autocamperType getAutocamperType() {
+        return autocamperType;
+    }
+    public void setAutocamperType(Autocamper.autocamperType autocamperType) {
+        this.autocamperType = autocamperType;
+    }
+
+    public Autocamper(double mileage, double size, int capacity, availability availability, condition condition, 
+                      kitchenType kitchenType, autocamperType autocamperType){
+
         setAvailability(availability);
         setCondition(condition);
         setKitchenType(kitchenType);
         setMileage(mileage);
         setCapacity(capacity);
         setSize(size);
-        this.id = setID();
+        setAutocamperID();
         setAutocamperType(autocamperType);
     }
 
