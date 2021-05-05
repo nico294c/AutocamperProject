@@ -89,6 +89,7 @@ public class Autocamper {
     public void setAutocamperID() throws SQLException {
         Connection connection = MyDatabase.openConnection();
         PreparedStatement preparedStatement = null;
+        int id = 0;
         try {
             preparedStatement = connection.prepareStatement("SELECT MAX(fldAutocamperID) FROM tbl_Autocamper");
 
@@ -96,18 +97,18 @@ public class Autocamper {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if(resultSet==null){
-                autocamperID = 1;
+                id = 1;
             }
 
             if (resultSet.next()) {
                 //id is set equal to the current max id plus one.
-                autocamperID = resultSet.getInt(1)+1;
+                id = resultSet.getInt(1)+1;
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
         MyDatabase.closeConnection(connection);
-        autocamperID = autocamperID;
+        this.autocamperID = id;
     }
 
     public Autocamper(int size, double mileage, condition condition, availability availability, int capacity,
