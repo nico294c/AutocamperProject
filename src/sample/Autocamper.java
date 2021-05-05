@@ -111,7 +111,7 @@ public class Autocamper {
     }
 
     public Autocamper(double mileage, int size, int capacity, availability availability, condition condition,
-                      kitchenType kitchenType, autocamperType autocamperType){
+                      kitchenType kitchenType, autocamperType autocamperType)throws SQLException{
 
         setAvailability(availability);
         setCondition(condition);
