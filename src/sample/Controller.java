@@ -23,7 +23,11 @@ public class Controller {
     @FXML
     Button rent;
     @FXML
-    Button refresh;
+    Button refreshAutocamper;
+    @FXML
+    Button refreshCustomer;
+    @FXML
+    Button createCustomer;
 
     @FXML
     ListView<Autocamper> lv;
@@ -57,7 +61,7 @@ public class Controller {
     }
 
     @FXML
-    public void rentAutocamper(Customer customer) throws SQLException {
+    public void createCustomer(Customer customer) throws SQLException {
         CustomerDao customerDao = new CustomerDaoImpl();
         customer.setTelephoneNo(phoneNo.getText());
         customer.setName(name.getText());
@@ -70,7 +74,6 @@ public class Controller {
         customer.setDriversLicenceId(licence.getText());
 
         customerDao.addCustomer(customer);
-
 
     }
 

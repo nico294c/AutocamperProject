@@ -13,38 +13,39 @@
    <children>
       <TabPane layoutX="-2.0" layoutY="-8.0" prefHeight="808.0" prefWidth="606.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Rent an autocamper">
+          <Tab text="Create Customer">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="phoneNo" layoutX="16.0" layoutY="238.0" promptText="Telephone Number" />
-                        <TextField fx:id="email" layoutX="16.0" layoutY="187.0" promptText="E-mail" />
-                        <TextField fx:id="country" layoutX="16.0" layoutY="510.0" promptText="Country" />
-                        <TextField fx:id="city" layoutX="16.0" layoutY="455.0" promptText="City" />
-                        <TextField fx:id="zipCode" layoutX="16.0" layoutY="396.0" promptText="Zip Code" />
-                        <TextField fx:id="streetNo" layoutX="16.0" layoutY="342.0" promptText="Street Number" />
-                        <DatePicker layoutX="16.0" layoutY="14.0" />
-                        <ListView fx:id="lv" layoutX="248.0" layoutY="43.0" prefHeight="453.0" prefWidth="331.0" />
-                        <TextField fx:id="customerID" layoutX="16.0" layoutY="75.0" promptText="Customer ID" />
-                        <TextField fx:id="name" layoutX="16.0" layoutY="129.0" promptText="Name" />
-                        <TextField fx:id="streetName" layoutX="16.0" layoutY="291.0" promptText="Street Name" />
-                        <TextField fx:id="licence" layoutX="16.0" layoutY="567.0" promptText="Drivers Licence ID" />
-                        <Button fx:id="rent" layoutX="250.0" layoutY="633.0" mnemonicParsing="false" onAction="#generateList" text="Rent Autocamper" />
-                        <Label layoutX="248.0" layoutY="515.0" text="Chosen Autocamper:" />
-                        <TextField layoutX="248.0" layoutY="536.0" prefHeight="62.0" prefWidth="331.0" />
-                        <Button fx:id="refresh" layoutX="250.0" layoutY="14.0" mnemonicParsing="false" onAction="#generateList" text="Refresh" />
+                        <TextField fx:id="phoneNo" layoutX="192.0" layoutY="235.0" promptText="Telephone Number" />
+                        <TextField fx:id="email" layoutX="192.0" layoutY="184.0" promptText="E-mail" />
+                        <TextField fx:id="country" layoutX="192.0" layoutY="511.0" promptText="Country" />
+                        <TextField fx:id="city" layoutX="192.0" layoutY="455.0" promptText="City" />
+                        <TextField fx:id="zipCode" layoutX="192.0" layoutY="401.0" promptText="Zip Code" />
+                        <TextField fx:id="streetNo" layoutX="192.0" layoutY="347.0" promptText="Street Number" />
+                        <TextField fx:id="customerID" layoutX="192.0" layoutY="78.0" promptText="Customer ID" />
+                        <TextField fx:id="name" layoutX="192.0" layoutY="128.0" promptText="Name" />
+                        <TextField fx:id="streetName" layoutX="192.0" layoutY="292.0" promptText="Street Name" />
+                        <TextField fx:id="licence" layoutX="192.0" layoutY="566.0" promptText="Drivers Licence ID" />
+                        <Button fx:id="createCustomer" layoutX="204.0" layoutY="646.0" mnemonicParsing="false" onAction="#createCustomer" text="Create Customer" />
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="Untitled Tab 2">
+          <Tab text="Rent Autocamper">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ListView layoutX="301.0" layoutY="111.0" prefHeight="501.0" prefWidth="288.0" />
-                        <ListView layoutX="14.0" layoutY="111.0" prefHeight="501.0" prefWidth="277.0" />
-                        <Label layoutX="14.0" layoutY="75.0" prefHeight="21.0" prefWidth="158.0" text="Available autocampers" />
-                        <Label layoutX="303.0" layoutY="75.0" text="Rented autocampers" />
+                        <Button fx:id="refreshAutocamper" layoutX="268.0" layoutY="81.0" mnemonicParsing="false" onAction="#generateList" text="Refresh" />
+                        <ListView layoutX="358.0" layoutY="111.0" prefHeight="501.0" prefWidth="231.0" />
+                        <Label layoutX="14.0" layoutY="86.0" prefHeight="21.0" prefWidth="158.0" text="Available autocampers" />
+                        <Label layoutX="358.0" layoutY="86.0" text="Customer List" />
+                        <DatePicker layoutX="14.0" layoutY="29.0" />
+                        <ListView fx:id="lv" layoutX="14.0" layoutY="111.0" prefHeight="501.0" prefWidth="331.0" />
+                        <Label layoutX="14.0" layoutY="636.0" text="Chosen Autocamper:" />
+                        <TextField layoutX="14.0" layoutY="664.0" prefHeight="62.0" prefWidth="331.0" />
+                        <Button fx:id="rent" layoutX="390.0" layoutY="666.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="136.0" text="Rent Autocamper" />
+                        <Button fx:id="refreshCustomer" layoutX="519.0" layoutY="81.0" mnemonicParsing="false" text="Refresh" />
                      </children>
                   </AnchorPane>
             </content>
