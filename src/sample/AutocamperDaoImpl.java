@@ -24,7 +24,8 @@ public class AutocamperDaoImpl implements AutocamperDao {
         MyDatabase.closeConnection(connection);
     }
 
-    static void insertAutocamper(Autocamper autocamper, Connection connection) throws SQLException {
+    static int insertAutocamper(Autocamper autocamper, Connection connection) throws SQLException {
+        int i = 0;
         PreparedStatement preparedStatement = connection.prepareStatement("INSERT into tbl_Autocamper VALUES (?,?,?,?,?,?,?,?)");
         autocamper.setAutocamperID();
         preparedStatement.setInt(1, autocamper.getAutocamperID());
@@ -36,7 +37,8 @@ public class AutocamperDaoImpl implements AutocamperDao {
         preparedStatement.setInt(7, autocamper.getKitchenType().getValue());
         preparedStatement.setInt(8, autocamper.getAutocamperType().getValue());
 
-        preparedStatement.execute();
+        i = preparedStatement.executeUpdate();
+        return i;
     }
 
     @Override
