@@ -25,17 +25,17 @@ public class AutocamperDaoImpl implements AutocamperDao {
     }
 
     static int insertAutocamper(Autocamper autocamper, Connection connection) throws SQLException {
-        int i = 0;
+        int i;
         PreparedStatement preparedStatement = connection.prepareStatement("INSERT into tbl_Autocamper VALUES (?,?,?,?,?,?,?,?)");
         autocamper.setAutocamperID();
         preparedStatement.setInt(1, autocamper.getAutocamperID());
         preparedStatement.setInt(2, autocamper.getSize());
-        preparedStatement.setFloat(3, (float) autocamper.getMileage());
+        preparedStatement.setInt(3, autocamper.getMileage());
         preparedStatement.setInt(4, autocamper.getCondition().getValue());
         preparedStatement.setInt(5, autocamper.getAvailability().getValue());
         preparedStatement.setInt(6, autocamper.getCapacity());
         preparedStatement.setInt(7, autocamper.getKitchenType().getValue());
-        preparedStatement.setInt(8, autocamper.getAutocamperType().getValue());
+        preparedStatement.setInt(8, autocamper.getAutocamperType().getValue()+1);
 
         i = preparedStatement.executeUpdate();
         return i;
@@ -56,12 +56,13 @@ public class AutocamperDaoImpl implements AutocamperDao {
 
 
         connection = MyDatabase.openConnection();
+        assert connection != null;
         PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM tbl_Autocamper");
 
         ResultSet resultSet = preparedStatement.executeQuery();
 
 
-        while (resultSet.next()){
+        while (resultSet.next()) {
             autocamperObservableList.add(new Autocamper(
                     resultSet.getInt(1),
                     resultSet.getInt(2),
@@ -73,9 +74,6 @@ public class AutocamperDaoImpl implements AutocamperDao {
                     Autocamper.autocamperType.getEnum(resultSet.getInt(8))));
 
 
-        }
-        for (Autocamper a: autocamperObservableList) {
-            System.out.println(a.getAutocamperID());
         }
         MyDatabase.closeConnection(connection);
 
