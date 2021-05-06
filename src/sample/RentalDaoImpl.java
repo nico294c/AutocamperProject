@@ -10,6 +10,7 @@ public class RentalDaoImpl implements RentalDao {
     @Override
     public void addRental(Rental rental) {
 
+
     }
 
     @Override
