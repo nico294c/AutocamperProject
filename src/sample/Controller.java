@@ -19,6 +19,7 @@ public class Controller {
 
 
    AutocamperDao autocamperDao = new AutocamperDaoImpl();
+   CustomerDao customerDao = new CustomerDaoImpl();
 
     @FXML
     Button rent;
@@ -27,10 +28,12 @@ public class Controller {
     @FXML
     Button refreshCustomer;
     @FXML
-    Button createCustomer;
+    Button createCustomerButton;
 
     @FXML
     ListView<Autocamper> lv;
+    @FXML
+    ListView<Customer> customerListView;
 
     @FXML
     TextField customerID;
@@ -59,21 +62,36 @@ public class Controller {
         lv.getItems().clear();
         lv.setItems(autocamperDao.getAllAutocamper());
     }
+    @FXML
+    public void generateCustomerList() throws SQLException {
+        customerListView.getItems().clear();
+        customerListView.setItems(customerDao.getAllCustomer());
+
+    }
 
     @FXML
-    public void createCustomer(Customer customer) throws SQLException {
+    public void createCustomer() throws SQLException {
         CustomerDao customerDao = new CustomerDaoImpl();
-        customer.setTelephoneNo(phoneNo.getText());
-        customer.setName(name.getText());
-        customer.setEmail(email.getText());
-        customer.setStreetName(streetName.getText());
-        customer.setStreetNumber(Integer.parseInt(streetNo.getText()));
-        customer.setCity(city.getText());
-        customer.setZipCode(zipCode.getText());
-        customer.setCountry(country.getText());
-        customer.setDriversLicenceId(licence.getText());
+        Customer customer = new Customer(0, phoneNo.getText(), name.getText(), email.getText(),
+                streetName.getText(),Integer.parseInt(streetNo.getText()),
+                city.getText(), zipCode.getText(),country.getText(), licence.getText());
+        customer.setCustomerId();
+//        customer.setTelephoneNo(phoneNo.getText());
+//        customer.setName(name.getText());
+//        customer.setEmail(email.getText());
+//        customer.setStreetName(streetName.getText());
+//        customer.setStreetNumber(Integer.parseInt(streetNo.getText()));
+//        customer.setCity(city.getText());
+//        customer.setZipCode(zipCode.getText());
+//        customer.setCountry(country.getText());
+//        customer.setDriversLicenceId(licence.getText());
 
         customerDao.addCustomer(customer);
+
+    }
+
+    @FXML
+    public void rentAutocamper() throws SQLException{
 
     }
 

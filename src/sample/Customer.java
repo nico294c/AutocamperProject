@@ -106,7 +106,9 @@ public class Customer {
         this.country = country;
     }
 
-    public Customer(int customerId, String telephoneNo, String name, String email, String driversLicenceId, String streetName, int streetNumber, String city, String zipCode, String country){
+    public Customer(int customerId, String telephoneNo, String name, String email,
+                    String streetName, int streetNumber,
+                    String city, String zipCode, String country, String driversLicenceId){
         this.customerId = customerId;
         setTelephoneNo(telephoneNo);
         setName(name);
@@ -117,5 +119,11 @@ public class Customer {
         setCity(city);
         setZipCode(zipCode);
         setCountry(country);
+    }
+
+    @Override
+    public String toString(){
+        String customerString = "ID: " + customerId + " Name: " + name + " PhoneNo: " + " Email: " + email;
+        return customerString;
     }
 }

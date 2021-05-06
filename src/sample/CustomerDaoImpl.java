@@ -1,11 +1,16 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
 public class CustomerDaoImpl implements CustomerDao{
+    ObservableList<Customer> customers = FXCollections.observableArrayList();
     Connection connection;
 
     @Override
@@ -48,7 +53,35 @@ public class CustomerDaoImpl implements CustomerDao{
     }
 
     @Override
-    public List<Customer> getAllCustomer(Customer customer) {
-        return null;
+    public ObservableList<Customer> getAllCustomer() throws SQLException {
+        connection = MyDatabase.openConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM tbl_Customer");
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+
+        while (resultSet.next()){
+            customers.add(new Customer(
+                    resultSet.getInt(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getString(4),
+                    resultSet.getString(5),
+                    resultSet.getInt(6),
+                    resultSet.getString(7),
+                    resultSet.getString(8),
+                    resultSet.getString(9),
+                    resultSet.getString(10)));
+
+
+        }
+        for (Customer c: customers) {
+            System.out.println(c.getCustomerId());
+        }
+        MyDatabase.closeConnection(connection);
+        return customers;
     }
 }
+
+
+
