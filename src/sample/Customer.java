@@ -1,5 +1,10 @@
 package sample;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Customer {
     private int customerId;
     private String telephoneNo;
@@ -15,8 +20,27 @@ public class Customer {
     public int getCustomerId() {
         return customerId;
     }
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setCustomerId() throws SQLException {
+        Connection connection = MyDatabase.openConnection();
+        PreparedStatement preparedStatement = null;
+        int id = 0;
+        try{
+            preparedStatement = connection.prepareStatement("SELECT MAX(fldCustomerID) from tbl_Customer");
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if(resultSet ==null){
+                id = 1;
+            }
+            if(resultSet.next()){
+                id = resultSet.getInt(1)+1;
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        MyDatabase.closeConnection(connection);
+        customerId = id;
+
     }
 
     public String getTelephoneNo() {
@@ -83,7 +107,7 @@ public class Customer {
     }
 
     public Customer(int customerId, String telephoneNo, String name, String email, String driversLicenceId, String streetName, int streetNumber, String city, String zipCode, String country){
-        setCustomerId(customerId);
+        this.customerId = customerId;
         setTelephoneNo(telephoneNo);
         setName(name);
         setEmail(email);
