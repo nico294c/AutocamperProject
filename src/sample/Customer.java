@@ -123,7 +123,7 @@ public class Customer {
 
     @Override
     public String toString(){
-        String customerString = "ID: " + customerId + " Name: " + name + " PhoneNo: " + " Email: " + email;
+        String customerString = "ID: " + customerId + " Name: " + name + " PhoneNo: " + telephoneNo + " Email: " + email;
         return customerString;
     }
 }
