@@ -9,24 +9,22 @@ import static org.junit.jupiter.api.Assertions.*;
 class AutocamperDaoImplTest {
 
     @org.junit.jupiter.api.Test
-    void addAutocamperTest() throws SQLException {
+    void insertAutocamper() throws SQLException {
         //Setup Test
-//        Autocamper autocamper = new Autocamper(10, 35, 2,
-//                Autocamper.availability.Available, Autocamper.condition.Perfect,
-//                Autocamper.kitchenType.NoKitchen, Autocamper.autocamperType.Basic);
-//
-//        Connection connection = MyDatabase.openConnection();
-//
-//        Autocamper autocamper2;
-//
-//        //Run test
-//        assert connection != null;
-//        AutocamperDaoImpl.insertAutocamper(autocamper, connection);
-//
-//        PreparedStatement preparedStatement1 = connection.prepareStatement("SELECT * from tbl_Autocamper where fldAutocamperID =");
+        Autocamper autocamper = new Autocamper(10, 35, 2, Autocamper.condition.Perfect, Autocamper.availability.Available, 3,
+                Autocamper.kitchenType.BigKitchen, Autocamper.autocamperType.Standard);
+        int actual;
+        int expected = 1;
+        Connection connection = MyDatabase.openConnection();
+
+        //Run test
+        assert connection != null;
+        actual = AutocamperDaoImpl.insertAutocamper(autocamper, connection);
+
 
 
         //Assertion
+        assertEquals(expected, actual);
 
 
 
