@@ -1,8 +1,12 @@
 package sample;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class InsuranceDaoImpl implements InsuranceDao{
+
+    ArrayList<Insurance> insuranceArrayList = new ArrayList<Insurance>();
+
     @Override
     public void addInsurance(Insurance insurance) {
 
