@@ -12,8 +12,8 @@ class CustomerDaoImplTest {
     @Test
     void insertCustomer() throws SQLException {
         //Setup Test
-        Customer customer = new Customer(1, "20202021", "Sarah Jensen", "Sarah.Jensen@gmail.com", "98456781",
-                "Baker Street", 5, "Bageson", "1002", "Amerdenarmki");
+        Customer customer = new Customer(1, "20202021", "Sarah Jensen", "Sarah.Jensen@gmail.com", "Bager Stræde",
+                02, "Midgar", "0202", "Denmark", "51456589");
 
         int actual;
         int expected = 1;

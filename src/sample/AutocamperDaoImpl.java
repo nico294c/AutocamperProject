@@ -77,8 +77,10 @@ public class AutocamperDaoImpl implements AutocamperDao {
         for (Autocamper a: autocamperObservableList) {
             System.out.println(a.getAutocamperID());
         }
+        MyDatabase.closeConnection(connection);
 
         return autocamperObservableList;
+
     }
 
 
