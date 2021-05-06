@@ -1,12 +1,15 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AutocamperDaoImpl implements AutocamperDao {
 
-    ArrayList<Autocamper> autocamperArrayList = new ArrayList<>();
+    ObservableList<Autocamper> autocamperObservableList = FXCollections.observableArrayList();
     Connection connection;
 
     @Override
@@ -47,7 +50,7 @@ public class AutocamperDaoImpl implements AutocamperDao {
     }
 
     @Override
-    public List<Autocamper> getAllAutocamper() throws SQLException {
+    public ObservableList<Autocamper> getAllAutocamper() throws SQLException {
 
 
         connection = MyDatabase.openConnection();
@@ -57,7 +60,7 @@ public class AutocamperDaoImpl implements AutocamperDao {
 
 
         while (resultSet.next()){
-            autocamperArrayList.add(new Autocamper(
+            autocamperObservableList.add(new Autocamper(
                     resultSet.getInt(1),
                     resultSet.getInt(2),
                     resultSet.getInt(3),
@@ -69,11 +72,11 @@ public class AutocamperDaoImpl implements AutocamperDao {
 
 
         }
-        for (Autocamper a: autocamperArrayList) {
+        for (Autocamper a: autocamperObservableList) {
             System.out.println(a.getAutocamperID());
         }
 
-        return null;
+        return autocamperObservableList;
     }
 
 
