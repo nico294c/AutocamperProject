@@ -212,5 +212,12 @@ public class Autocamper {
     }
 
 
+    @Override
+    public String toString(){
+        return "ID: " + getAutocamperID() +" Type: " + getAutocamperType() +" Size: " + getSize() + " Mileage:  " + getMileage()
+                + " Condition: " + getCondition() + " Available: " + getAvailability()
+                + " Capacity: " + getCapacity() + " Kitchen: " + getKitchenType();
+    }
+
 
 }
