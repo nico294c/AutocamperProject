@@ -9,21 +9,22 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class CustomerDaoImpl implements CustomerDao{
+public class CustomerDaoImpl implements CustomerDao {
     ObservableList<Customer> customers = FXCollections.observableArrayList();
     Connection connection;
 
     @Override
     public void addCustomer(Customer customer) throws SQLException {
         connection = MyDatabase.openConnection();
-        assert connection!= null;
+        assert connection != null;
 
         insertCustomer(customer, connection);
 
         MyDatabase.closeConnection(connection);
     }
+
     static int insertCustomer(Customer customer, Connection connection) throws SQLException {
-        int i = 0;
+        int i;
         PreparedStatement preparedStatement = connection.prepareStatement("INSERT into tbl_Customer VALUES (?,?,?,?,?,?,?,?,?,?)");
         customer.setCustomerId();
         preparedStatement.setInt(1, customer.getCustomerId());
@@ -55,12 +56,13 @@ public class CustomerDaoImpl implements CustomerDao{
     @Override
     public ObservableList<Customer> getAllCustomer() throws SQLException {
         connection = MyDatabase.openConnection();
+        assert connection != null;
         PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM tbl_Customer");
 
         ResultSet resultSet = preparedStatement.executeQuery();
 
 
-        while (resultSet.next()){
+        while (resultSet.next()) {
             customers.add(new Customer(
                     resultSet.getInt(1),
                     resultSet.getString(2),
@@ -74,9 +76,6 @@ public class CustomerDaoImpl implements CustomerDao{
                     resultSet.getString(10)));
 
 
-        }
-        for (Customer c: customers) {
-            System.out.println(c.getCustomerId());
         }
         MyDatabase.closeConnection(connection);
         return customers;

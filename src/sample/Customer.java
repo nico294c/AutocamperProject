@@ -20,20 +20,22 @@ public class Customer {
     public int getCustomerId() {
         return customerId;
     }
+
     public void setCustomerId() throws SQLException {
         Connection connection = MyDatabase.openConnection();
-        PreparedStatement preparedStatement = null;
+        PreparedStatement preparedStatement;
         int id = 0;
-        try{
+        try {
+            assert connection != null;
             preparedStatement = connection.prepareStatement("SELECT MAX(fldCustomerID) from tbl_Customer");
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            if(resultSet ==null){
+            if (resultSet == null) {
                 id = 1;
             }
-            if(resultSet.next()){
-                id = resultSet.getInt(1)+1;
+            if (resultSet.next()) {
+                id = resultSet.getInt(1) + 1;
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -46,6 +48,7 @@ public class Customer {
     public String getTelephoneNo() {
         return telephoneNo;
     }
+
     public void setTelephoneNo(String telephoneNo) {
         this.telephoneNo = telephoneNo;
     }
@@ -53,6 +56,7 @@ public class Customer {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -60,6 +64,7 @@ public class Customer {
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -67,6 +72,7 @@ public class Customer {
     public String getDriversLicenceId() {
         return driversLicenceId;
     }
+
     public void setDriversLicenceId(String driversLicenceId) {
         this.driversLicenceId = driversLicenceId;
     }
@@ -74,6 +80,7 @@ public class Customer {
     public String getStreetName() {
         return streetName;
     }
+
     public void setStreetName(String streetName) {
         this.streetName = streetName;
     }
@@ -81,6 +88,7 @@ public class Customer {
     public int getStreetNumber() {
         return streetNumber;
     }
+
     public void setStreetNumber(int streetNumber) {
         this.streetNumber = streetNumber;
     }
@@ -88,6 +96,7 @@ public class Customer {
     public String getCity() {
         return city;
     }
+
     public void setCity(String city) {
         this.city = city;
     }
@@ -95,6 +104,7 @@ public class Customer {
     public String getZipCode() {
         return zipCode;
     }
+
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
@@ -102,13 +112,14 @@ public class Customer {
     public String getCountry() {
         return country;
     }
+
     public void setCountry(String country) {
         this.country = country;
     }
 
     public Customer(int customerId, String telephoneNo, String name, String email,
                     String streetName, int streetNumber,
-                    String city, String zipCode, String country, String driversLicenceId){
+                    String city, String zipCode, String country, String driversLicenceId) {
         this.customerId = customerId;
         setTelephoneNo(telephoneNo);
         setName(name);
@@ -122,7 +133,7 @@ public class Customer {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         String customerString = "ID: " + customerId + " Name: " + name + " PhoneNo: " + telephoneNo + " Email: " + email;
         return customerString;
     }
