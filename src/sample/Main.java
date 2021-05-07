@@ -16,6 +16,9 @@ public class Main extends Application {
         primaryStage.setTitle("Wagner Autocamper Rental Software");
         primaryStage.setScene(new Scene(root, 1024, 900));
         primaryStage.show();
+
+
+
     }
 
 
