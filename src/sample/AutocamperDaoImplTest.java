@@ -21,12 +21,7 @@ class AutocamperDaoImplTest {
         assert connection != null;
         actual = AutocamperDaoImpl.insertAutocamper(autocamper, connection);
 
-
-
         //Assertion
         assertEquals(expected, actual);
-
-
-
     }
 }

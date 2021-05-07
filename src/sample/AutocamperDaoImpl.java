@@ -35,7 +35,7 @@ public class AutocamperDaoImpl implements AutocamperDao {
         preparedStatement.setInt(5, autocamper.getAvailability().getValue());
         preparedStatement.setInt(6, autocamper.getCapacity());
         preparedStatement.setInt(7, autocamper.getKitchenType().getValue());
-        preparedStatement.setInt(8, autocamper.getAutocamperType().getValue()+1);
+        preparedStatement.setInt(8, autocamper.getAutocamperType().getValue());
 
         i = preparedStatement.executeUpdate();
         return i;
